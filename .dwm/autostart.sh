@@ -18,33 +18,11 @@ pactl -- set-sink-volume 0 100%
 
 # wmname LG3D
 
-xautolock -time 10 -locker slock
+xautolock -time 10 -locker slock &
 
 redshift -x
 redshift -O 5000
 
 kdeconnect-indicator &
+
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-dte() {
-  dte="$(date +"%A, %B %d - %H:%M")"
-  echo $dte
-}
-
-battery() {
-  battery="$(acpi|awk '{print $4}'|sed 's/,//g')"
-  echo $battery
-}
-
-upd() {
-  upd="$(checkupdates|wc -l)"
-  if [ $upd -ge 0 ]; then
-    echo "$upd update(s)"
-  fi
-}
-
-# while true;do
-#   xsetroot -name "$(battery) | $(dte)"
-#   sleep 1m
-# done &
-
